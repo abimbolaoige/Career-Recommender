@@ -126,7 +126,7 @@ if st.button("🔍 Recommend Career"):
 st.markdown("---")
 admin_key = st.text_input("🔐 Admin Access Key", type="password")
 
-if admin_key == "showcasejuly2025":
+if admin_key == st.secrets["admin"]["key"]:
     st.success("✅ Admin access granted.")
     
     if os.path.exists("user_logs.csv"):
