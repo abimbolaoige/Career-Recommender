@@ -10,7 +10,8 @@ st.title("🎯 AI-Powered Tech Career Recommender")
 st.write("Answer a few questions and get matched to your ideal tech career!")
 
 name = st.text_input("Your Name")
-age = st.number_input("Your Age", min_value=10, max_value=100, value=25, format="%d")
+age_range = st.selectbox("Select Your Age Range", [
+    "Under 18", "18–24", "25–34", "35–44", "45–54", "55-64", "65+"])
 gender = st.selectbox("Gender", ["Male", "Female"])
 
 education = st.selectbox("Education Level", ["SSCE", "OND", "HND", "BSc", "MSc"])
