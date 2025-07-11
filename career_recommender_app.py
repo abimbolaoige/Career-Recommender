@@ -83,13 +83,15 @@ explanations = {
     "DevOps Engineer": "You love automation, infrastructure, and keeping systems running smoothly."
 }
 
-# Load existing logs if they exist
 log_file = "user_logs.csv"
 existing_names = []
 
 if os.path.exists(log_file):
-    existing_logs = pd.read_csv(log_file)
-    existing_names = existing_logs["Name"].str.lower().tolist()
+    try:
+        existing_logs = pd.read_csv(log_file)
+        existing_names = existing_logs["Name"].str.lower().tolist()
+    except pd.errors.ParserError:
+        st.warning("⚠️ The log file is corrupted or unreadable. Please fix or delete `user_logs.csv`.")
 
 # Show result
 if st.button("🔍 Recommend Career"):
