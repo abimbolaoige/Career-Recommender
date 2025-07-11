@@ -1,196 +1,119 @@
 import streamlit as st
+import pandas as pd
+import os
+import datetime
 
-st.set_page_config(page_title="Tech Career Recommender", layout="centered")
+st.set_page_config(page_title="AI Career Recommender", layout="centered")
 
-st.title("🔍 Discover Your Ideal Tech Career!")
-st.markdown("Answer the 6 quick questions below and get a tech career that fits your interests and strengths.")
+# Page title
+st.title("🎯 AI-Powered Tech Career Recommender")
+st.write("Answer a few questions and get matched to your ideal tech career!")
 
-# Updated career paths
+# User inputs
+name = st.text_input("Your Name")
+
+education = st.selectbox("Education Level", ["SSCE", "OND", "HND", "BSc", "MSc"])
+interest = st.selectbox("Which area interests you most?", ["Data", "Design", "Communication", "Leadership", "AI", "Cybersecurity", "DevOps"])
+strengths = st.multiselect("What are your top strengths?", ["Problem-solving", "Creativity", "Empathy", "Leadership", "Analytical Thinking"])
+learning_style = st.radio("Preferred Learning Style", ["Visual", "Hands-on", "Self-paced"])
+tech_level = st.selectbox("Tech Exposure Level", ["Beginner", "Intermediate", "Advanced"])
+
+# Initialize career scores
 careers = {
     "Data Analyst": 0,
-    "UI/UX Designer": 0,
-    "Backend Developer": 0,
-    "Product Manager": 0,
-    "AI/ML Engineer": 0,
-    "DevOps Engineer": 0,
-    "Cybersecurity Specialist": 0
+    "Product Designer": 0,
+    "Technical Writer": 0,
+    "Project Manager": 0,
+    "AI Engineer": 0,
+    "Cybersecurity Specialist": 0,
+    "DevOps Engineer": 0
 }
 
-# Question 1
-q1 = st.radio("1. What excites you the most?", [
-    "Understanding how users think",
-    "Solving complex logic problems",
-    "Making digital experiences look beautiful and intuitive",
-    "Managing timelines and team goals",
-    "Finding patterns in data",
-    "Automating systems for faster deployment",
-    "Preventing or detecting cyber attacks"
-])
+# Add scores based on interest
+interest_map = {
+    "Data": ["Data Analyst"],
+    "Design": ["Product Designer"],
+    "Communication": ["Technical Writer"],
+    "Leadership": ["Project Manager"],
+    "AI": ["AI Engineer"],
+    "Cybersecurity": ["Cybersecurity Specialist"],
+    "DevOps": ["DevOps Engineer"]
+}
 
-if q1 == "Understanding how users think":
-    careers["UI/UX Designer"] += 2
-    careers["Product Manager"] += 1
-elif q1 == "Solving complex logic problems":
-    careers["Backend Developer"] += 2
-    careers["AI/ML Engineer"] += 1
-elif q1 == "Making digital experiences look beautiful and intuitive":
-    careers["UI/UX Designer"] += 3
-elif q1 == "Managing timelines and team goals":
-    careers["Product Manager"] += 3
-elif q1 == "Finding patterns in data":
-    careers["Data Analyst"] += 3
-    careers["AI/ML Engineer"] += 1
-elif q1 == "Automating systems for faster deployment":
-    careers["DevOps Engineer"] += 3
-elif q1 == "Preventing or detecting cyber attacks":
-    careers["Cybersecurity Specialist"] += 3
+for career in interest_map.get(interest, []):
+    careers[career] += 2  # base score for interest
 
-# Question 2
-q2 = st.radio("2. You’d rather spend your day...", [
-    "Designing wireframes or prototypes",
-    "Writing Python or JavaScript code",
-    "Reviewing data in spreadsheets or dashboards",
-    "Leading a team to ship a new feature",
-    "Training a machine learning model",
-    "Configuring deployment pipelines",
-    "Running security audits or penetration tests"
-])
+# Add scores based on strengths
+for s in strengths:
+    if s == "Problem-solving":
+        careers["Data Analyst"] += 1
+        careers["Cybersecurity Specialist"] += 1
+        careers["DevOps Engineer"] += 1
+    elif s == "Creativity":
+        careers["Product Designer"] += 2
+        careers["Technical Writer"] += 1
+    elif s == "Empathy":
+        careers["Technical Writer"] += 2
+    elif s == "Leadership":
+        careers["Project Manager"] += 2
+        careers["DevOps Engineer"] += 1
+    elif s == "Analytical Thinking":
+        careers["Data Analyst"] += 1
+        careers["AI Engineer"] += 2
+        careers["Cybersecurity Specialist"] += 1
 
-if q2 == "Designing wireframes or prototypes":
-    careers["UI/UX Designer"] += 3
-elif q2 == "Writing Python or JavaScript code":
-    careers["Backend Developer"] += 3
-elif q2 == "Reviewing data in spreadsheets or dashboards":
-    careers["Data Analyst"] += 3
-elif q2 == "Leading a team to ship a new feature":
-    careers["Product Manager"] += 3
-elif q2 == "Training a machine learning model":
-    careers["AI/ML Engineer"] += 3
-elif q2 == "Configuring deployment pipelines":
-    careers["DevOps Engineer"] += 3
-elif q2 == "Running security audits or penetration tests":
-    careers["Cybersecurity Specialist"] += 3
+# Add scores based on tech level
+if tech_level == "Intermediate":
+    careers["AI Engineer"] += 1
+    careers["DevOps Engineer"] += 1
+    careers["Cybersecurity Specialist"] += 1
+elif tech_level == "Advanced":
+    careers["AI Engineer"] += 2
+    careers["DevOps Engineer"] += 2
+    careers["Cybersecurity Specialist"] += 2
 
-# Question 3
-q3 = st.radio("3. Which best describes your strength?", [
-    "Organizing tasks and prioritizing",
-    "Creative thinking and visual storytelling",
-    "Analytical thinking and numbers",
-    "Solving backend tech issues",
-    "Research and experimentation",
-    "System security and defense",
-    "Process automation and infrastructure"
-])
+# Career descriptions
+explanations = {
+    "Data Analyst": "You love working with data to find insights that drive decisions.",
+    "Product Designer": "You thrive on creativity, design thinking, and crafting great user experiences.",
+    "Technical Writer": "You're great at making complex topics easy to understand.",
+    "Project Manager": "You have leadership skills and enjoy organizing teams to hit goals.",
+    "AI Engineer": "You're analytical and excited about machine learning and automation.",
+    "Cybersecurity Specialist": "You enjoy securing systems and thinking like a hacker to prevent breaches.",
+    "DevOps Engineer": "You love automation, infrastructure, and keeping systems running smoothly."
+}
 
-if q3 == "Organizing tasks and prioritizing":
-    careers["Product Manager"] += 3
-elif q3 == "Creative thinking and visual storytelling":
-    careers["UI/UX Designer"] += 3
-elif q3 == "Analytical thinking and numbers":
-    careers["Data Analyst"] += 3
-elif q3 == "Solving backend tech issues":
-    careers["Backend Developer"] += 3
-elif q3 == "Research and experimentation":
-    careers["AI/ML Engineer"] += 3
-elif q3 == "System security and defense":
-    careers["Cybersecurity Specialist"] += 3
-elif q3 == "Process automation and infrastructure":
-    careers["DevOps Engineer"] += 3
+# Show result
+if st.button("🔍 Recommend Career"):
+    if name:
+        best_match = max(careers, key=careers.get)
+        st.success(f"Hi **{name}**, based on your profile, you’d make a great **{best_match}**!")
+        st.info(f"💡 Why? {explanations[best_match]}")
 
-# Question 4
-q4 = st.radio("4. You prefer learning through...", [
-    "Design tools like Figma, Canva, etc.",
-    "Analyzing case studies and business goals",
-    "Online coding tutorials and GitHub",
-    "Exploring data with charts and visuals",
-    "Building predictive models from datasets",
-    "Working on DevOps labs and CI/CD setups",
-    "Simulated hacking or ethical security labs"
-])
+        # Save user response
+        user_data = {
+            "Name": name,
+            "Education Level": education,
+            "Interest Area": interest,
+            "Strengths": ", ".join(strengths),
+            "Learning Style": learning_style,
+            "Tech Level": tech_level,
+            "Recommended Career": best_match,
+            "Timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
 
-if q4 == "Design tools like Figma, Canva, etc.":
-    careers["UI/UX Designer"] += 3
-elif q4 == "Analyzing case studies and business goals":
-    careers["Product Manager"] += 3
-elif q4 == "Online coding tutorials and GitHub":
-    careers["Backend Developer"] += 3
-elif q4 == "Exploring data with charts and visuals":
-    careers["Data Analyst"] += 3
-elif q4 == "Building predictive models from datasets":
-    careers["AI/ML Engineer"] += 3
-elif q4 == "Working on DevOps labs and CI/CD setups":
-    careers["DevOps Engineer"] += 3
-elif q4 == "Simulated hacking or ethical security labs":
-    careers["Cybersecurity Specialist"] += 3
+        log_df = pd.DataFrame([user_data])
+        log_file = "user_logs.csv"
 
-# Question 5
-q5 = st.radio("5. If you had to lead a project, you'd choose to...", [
-    "Create an app that predicts user behavior using AI",
-    "Design a sleek mobile banking interface",
-    "Develop the server-side logic of a booking system",
-    "Build an interactive dashboard for business insights",
-    "Coordinate teams to launch a product in 3 weeks",
-    "Build a secure login and access system",
-    "Automate cloud deployment across regions"
-])
+        if os.path.exists(log_file):
+            log_df.to_csv(log_file, mode='a', index=False, header=False)
+        else:
+            log_df.to_csv(log_file, index=False)
 
-if q5 == "Create an app that predicts user behavior using AI":
-    careers["AI/ML Engineer"] += 3
-elif q5 == "Design a sleek mobile banking interface":
-    careers["UI/UX Designer"] += 3
-elif q5 == "Develop the server-side logic of a booking system":
-    careers["Backend Developer"] += 3
-elif q5 == "Build an interactive dashboard for business insights":
-    careers["Data Analyst"] += 3
-elif q5 == "Coordinate teams to launch a product in 3 weeks":
-    careers["Product Manager"] += 3
-elif q5 == "Build a secure login and access system":
-    careers["Cybersecurity Specialist"] += 3
-elif q5 == "Automate cloud deployment across regions":
-    careers["DevOps Engineer"] += 3
+        st.success("✅ Your response has been saved.")
+    else:
+        st.warning("Please enter your name to proceed.")
 
-# Question 6
-q6 = st.radio("6. What’s your ideal work environment?", [
-    "Working closely with designers and developers",
-    "Tackling technical tasks independently",
-    "Collaborating on business strategy",
-    "Being given data and asked to explain what it means",
-    "Solving visual layout and design problems",
-    "Monitoring security threats in real time",
-    "Maintaining system reliability and performance"
-])
-
-if q6 == "Working closely with designers and developers":
-    careers["Product Manager"] += 2
-    careers["UI/UX Designer"] += 1
-elif q6 == "Tackling technical tasks independently":
-    careers["Backend Developer"] += 3
-elif q6 == "Collaborating on business strategy":
-    careers["Product Manager"] += 3
-elif q6 == "Being given data and asked to explain what it means":
-    careers["Data Analyst"] += 3
-elif q6 == "Solving visual layout and design problems":
-    careers["UI/UX Designer"] += 3
-elif q6 == "Monitoring security threats in real time":
-    careers["Cybersecurity Specialist"] += 3
-elif q6 == "Maintaining system reliability and performance":
-    careers["DevOps Engineer"] += 3
-
-# Final Result
-if st.button("🚀 Show My Career Match"):
-    best_match = max(careers, key=careers.get)
-
-    st.success(f"🎯 Your Ideal Tech Career Path is: **{best_match}**")
-
-    descriptions = {
-        "Data Analyst": "You love digging into data, spotting trends, and presenting insights that drive decisions.",
-        "UI/UX Designer": "You’re creative, user-focused, and passionate about building visually appealing and intuitive experiences.",
-        "Backend Developer": "You enjoy solving deep technical problems and building the logic that powers applications.",
-        "Product Manager": "You thrive on strategy, collaboration, and bringing people and ideas together to ship products.",
-        "AI/ML Engineer": "You’re curious, experimental, and love creating smart systems that learn from data.",
-        "DevOps Engineer": "You love automating workflows and ensuring software runs smoothly across environments.",
-        "Cybersecurity Specialist": "You're vigilant, detail-oriented, and passionate about protecting systems and data from threats."
-    }
-
-    st.markdown(f"**Why?** {descriptions[best_match]}")
-    st.markdown("🔗 Want to learn more? Explore beginner courses on [Coursera](https://coursera.org), [freeCodeCamp](https://freecodecamp.org), or [YouTube](https://youtube.com).")
+# Footer
+st.markdown("---")
+st.caption("Built for 3MTT Knowledge Showcase | Powered by Data + AI 🔬")
