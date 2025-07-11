@@ -126,11 +126,9 @@ if st.button("🔍 Recommend Career"):
 st.markdown("---")
 admin_key = st.text_input("🔐 Admin Access Key", type="password")
 
-admin_secret = st.secrets.get("admin", {}).get("key", None)
-
-if admin_key == admin_secret:
+if admin_key == "showcasejuly2025":
     st.success("✅ Admin access granted.")
-
+    
     if os.path.exists("user_logs.csv"):
         df_logs = pd.read_csv("user_logs.csv")
         st.subheader("📋 Recent Submissions")
@@ -145,10 +143,8 @@ if admin_key == admin_secret:
         )
     else:
         st.info("No user data logged yet.")
-
-elif admin_key: 
+elif admin_key != "":
     st.error("❌ Invalid admin key.")
-
 
 # Footer
 st.markdown("---")
