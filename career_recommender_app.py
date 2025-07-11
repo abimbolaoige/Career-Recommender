@@ -1,11 +1,15 @@
 import streamlit as st
 import pandas as pd
 import os
+import datetime
 
 st.set_page_config(page_title="Tech Career Recommender", layout="centered")
 
 st.title("🔍 Discover Your Ideal Tech Career!")
 st.markdown("Answer the 6 quick questions below and get a tech career that fits your interests and strengths.")
+
+# Name input
+name = st.text_input("👤 Enter your name (optional but recommended):")
 
 # Define career options and initialize scores
 careers = {
@@ -196,3 +200,21 @@ if st.button("🚀 Show My Career Match"):
 
     st.markdown(f"**Why?** {descriptions[best_match]}")
     st.markdown("🔗 Learn more with free resources on [Coursera](https://coursera.org), [freeCodeCamp](https://freecodecamp.org), or [YouTube](https://youtube.com).")
+
+    # Save user result to CSV
+    if name:
+        user_data = {
+            "Name": name,
+            "Career Match": best_match,
+            "Timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+
+        log_df = pd.DataFrame([user_data])
+        log_file = "user_logs.csv"
+
+        if os.path.exists(log_file):
+            log_df.to_csv(log_file, mode='a', index=False, header=False)
+        else:
+            log_df.to_csv(log_file, index=False)
+
+        st.success("✅ Your result has been saved successfully!")
