@@ -118,11 +118,16 @@ if st.button("🔍 Recommend Career"):
 st.markdown("---")
 st.caption("Built for 3MTT Knowledge Showcase | Powered by Data + AI 🔬")
 
-# Admin section: view/download logs
+# --- Admin Section (Hidden behind admin key) ---
 st.markdown("---")
-with st.expander("🛠️ Admin Panel (View Collected Responses)"):
+admin_key = st.text_input("🔐 Admin Access Key", type="password")
+
+if admin_key == "counselmedata1": 
+    st.success("✅ Admin access granted.")
+    
     if os.path.exists("user_logs.csv"):
         df_logs = pd.read_csv("user_logs.csv")
+        st.subheader("📋 Recent Submissions")
         st.dataframe(df_logs.tail(10), use_container_width=True)
 
         csv = df_logs.to_csv(index=False).encode('utf-8')
@@ -133,5 +138,9 @@ with st.expander("🛠️ Admin Panel (View Collected Responses)"):
             mime='text/csv'
         )
     else:
+        st.info("No user data logged yet.")
+elif admin_key != "":
+    st.error("❌ Invalid admin key.")
+
         st.info("No user data logged yet. Come back after more users submit responses.")
 
