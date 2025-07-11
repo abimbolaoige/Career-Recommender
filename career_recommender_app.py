@@ -11,7 +11,7 @@ st.write("Answer a few questions and get matched to your ideal tech career!")
 
 name = st.text_input("Your Name")
 age = st.number_input("Your Age", min_value=10, max_value=100, step=1)
-gender = st.selectbox("Gender", ["Prefer not to say", "Female", "Male", "Non-binary", "Other"])
+gender = st.selectbox("Gender", ["Male", "Female"])
 
 education = st.selectbox("Education Level", ["SSCE", "OND", "HND", "BSc", "MSc"])
 interest = st.selectbox("Which area interests you most?", ["Data", "Design", "Communication", "Leadership", "AI", "Cybersecurity", "DevOps"])
@@ -94,42 +94,35 @@ if os.path.exists(log_file):
     except pd.errors.ParserError:
         st.warning("⚠️ The log file is corrupted or unreadable. Please fix or delete `user_logs.csv`.")
 
-# Show result
 if st.button("🔍 Recommend Career"):
-    if not name:
-        st.warning("Please enter your name to proceed.")
-    elif name.lower() in existing_names:
-        st.error("⚠️ You’ve already submitted this form. Only one entry is allowed per person.")
-    else:
-        best_match = max(careers, key=careers.get)
-        st.success(f"Hi **{name}**, based on your profile, you’d make a great **{best_match}**!")
-        st.info(f"💡 Why? {explanations[best_match]}")
+    if name:
+        result = recommend_career(interest, strengths, tech_level)
+        st.success(f"Hi **{name}**, based on your profile, you’d make a great **{result}**!")
 
-       # Logging the result
-if name and result:
-    log_data = {
-        "Name": name,
-        "Age": age,
-        "Gender": gender,
-        "Education": education,
-        "Interest": interest,
-        "Strengths": ", ".join(strengths),
-        "Learning_Style": learning_style,
-        "Tech_Level": tech_level,
-        "Recommended_Career": result,
-        "Timestamp": pd.Timestamp.now()
-    }
+        # Logging the result
+        log_file = "user_logs.csv"
+        log_data = {
+            "Name": name,
+            "Age": age,
+            "Gender": gender,
+            "Education": education,
+            "Interest": interest,
+            "Strengths": ", ".join(strengths),
+            "Learning_Style": learning_style,
+            "Tech_Level": tech_level,
+            "Recommended_Career": result,
+            "Timestamp": pd.Timestamp.now()
+        }
 
-    log_df = pd.DataFrame([log_data])
-
-    log_df.to_csv(log_file, mode='a', header=not os.path.exists(log_file), index=False)
+        log_df = pd.DataFrame([log_data])
 
         if os.path.exists(log_file):
-            log_df.to_csv(log_file, mode='a', index=False, header=False)
+            log_df.to_csv(log_file, mode='a', header=False, index=False)
         else:
-            log_df.to_csv(log_file, index=False)
+            log_df.to_csv(log_file, mode='w', header=True, index=False)
 
-        st.success("✅ Your response has been saved.")
+    else:
+        st.warning("Please enter your name to proceed.")
 
 # --- Admin Section 
 st.markdown("---")
