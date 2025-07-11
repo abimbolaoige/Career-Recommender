@@ -6,7 +6,7 @@ import datetime
 st.set_page_config(page_title="AI Career Recommender", layout="centered")
 
 # Page title
-st.title("🎯 AI-Powered Tech Career Recommender")
+st.title("AI-Powered Tech Career Recommender")
 st.write("Answer a few questions and get matched to your ideal tech career!")
 
 name = st.text_input("Your Name")
@@ -21,8 +21,7 @@ learning_style = st.radio("Preferred Learning Style", ["Visual", "Hands-on", "Se
 tech_level = st.selectbox("Tech Exposure Level", ["Beginner", "Intermediate", "Advanced"])
 
 # Initialize career scores
-careers = {
-    "Data Analyst": 0,
+careers = {"Data Analyst": 0,
     "Product Designer": 0,
     "Technical Writer": 0,
     "Project Manager": 0,
@@ -32,15 +31,13 @@ careers = {
     "UI/UX": 0}
 
 # Add scores based on interest
-interest_map = {
-    "Data": ["Data Analyst"],
+interest_map = {"Data": ["Data Analyst"],
     "Design": ["Product Designer", "UI/UX Designer"],
     "Communication": ["Technical Writer"],
     "Leadership": ["Project Manager"],
     "AI": ["AI Engineer"],
     "Cybersecurity": ["Cybersecurity Specialist"],
-    "DevOps": ["DevOps Engineer"]
-}
+    "DevOps": ["DevOps Engineer"]}
 
 for career in interest_map.get(interest, []):
     careers[career] += 2  # base score for interest
@@ -80,8 +77,7 @@ elif tech_level == "Advanced":
 
 
 # Career descriptions
-explanations = {
-    "Data Analyst": "You love working with data to find insights that drive decisions.",
+explanations = { "Data Analyst": "You love working with data to find insights that drive decisions.",
     "Product Designer": "You thrive on creativity, design thinking, and crafting great user experiences.",
     "UI/UX Designer": "You’re a creative thinker who enjoys designing intuitive, user-friendly digital interfaces.",
     "Technical Writer": "You're great at making complex topics easy to understand.",
@@ -98,7 +94,7 @@ if os.path.exists(log_file):
         existing_logs = pd.read_csv(log_file)
         existing_names = existing_logs["Name"].str.lower().tolist()
     except pd.errors.ParserError:
-        st.warning("⚠️ The log file is corrupted or unreadable. Please fix or delete `user_logs.csv`.")
+        st.warning("The log file is corrupted or unreadable. Please fix or delete `user_logs.csv`.")
 
 if st.button("🔍 Recommend Career"):
     if name:
@@ -107,8 +103,7 @@ if st.button("🔍 Recommend Career"):
 
         # Logging the result
         log_file = "user_logs.csv"
-        log_data = {
-            "Name": name,
+        log_data = {"Name": name,
             "Age": age,
             "Gender": gender,
             "Education": education,
@@ -117,8 +112,7 @@ if st.button("🔍 Recommend Career"):
             "Learning_Style": learning_style,
             "Tech_Level": tech_level,
             "Recommended_Career": result,
-            "Timestamp": pd.Timestamp.now()
-        }
+            "Timestamp": pd.Timestamp.now()}
 
         log_df = pd.DataFrame([log_data])
 
@@ -132,27 +126,26 @@ if st.button("🔍 Recommend Career"):
 
 # --- Admin Section 
 st.markdown("---")
-admin_key = st.text_input("🔐 Admin Access Key", type="password")
+admin_key = st.text_input("Admin Access Key", type="password")
 
 if admin_key == st.secrets["admin"]["key"]:
-    st.success("✅ Admin access granted.")
+    st.success("Admin access granted.")
     
     if os.path.exists("user_logs.csv"):
         df_logs = pd.read_csv("user_logs.csv")
-        st.subheader("📋 Recent Submissions")
+        st.subheader("Recent Submissions")
         st.dataframe(df_logs.tail(10), use_container_width=True)
 
         csv = df_logs.to_csv(index=False).encode('utf-8')
         st.download_button(
-            label="⬇️ Download Full CSV Log",
+            label="Download Full CSV Log",
             data=csv,
             file_name='user_logs.csv',
-            mime='text/csv'
-        )
+            mime='text/csv')
     else:
         st.info("No user data logged yet.")
 elif admin_key != "":
-    st.error("❌ Invalid admin key.")
+    st.error("Invalid admin key.")
 
 # Footer
 st.markdown("---")
