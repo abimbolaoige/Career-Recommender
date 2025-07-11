@@ -150,4 +150,4 @@ elif admin_key != "":
 
 # Footer
 st.markdown("---")
-st.caption("Built for 3MTT Knowledge Showcase | By: Abimbola")
+st.caption("Built for 3MTT Knowledge Showcase | AbimbolaOIge")
