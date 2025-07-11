@@ -36,6 +36,7 @@ interest_map = {"Data": ["Data Analyst"],
     "Design": ["Product Designer", "UI/UX Designer"],
     "Communication": ["Technical Writer"],
     "Leadership": ["Project Manager"],
+    "UI/UX Designer": 0,
     "AI": ["AI Engineer"],
     "Cybersecurity": ["Cybersecurity Specialist"],
     "DevOps": ["DevOps Engineer"]}
