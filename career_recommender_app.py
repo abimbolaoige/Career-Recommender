@@ -117,3 +117,21 @@ if st.button("🔍 Recommend Career"):
 # Footer
 st.markdown("---")
 st.caption("Built for 3MTT Knowledge Showcase | Powered by Data + AI 🔬")
+
+# Admin section: view/download logs
+st.markdown("---")
+with st.expander("🛠️ Admin Panel (View Collected Responses)"):
+    if os.path.exists("user_logs.csv"):
+        df_logs = pd.read_csv("user_logs.csv")
+        st.dataframe(df_logs.tail(10), use_container_width=True)
+
+        csv = df_logs.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            label="⬇️ Download Full CSV Log",
+            data=csv,
+            file_name='user_logs.csv',
+            mime='text/csv'
+        )
+    else:
+        st.info("No user data logged yet. Come back after more users submit responses.")
+
