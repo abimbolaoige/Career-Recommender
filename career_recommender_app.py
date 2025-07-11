@@ -7,7 +7,8 @@ st.set_page_config(page_title="AI Career Recommender", layout="centered")
 
 # Page title
 
-st.title("🤖🤖 AI-Powered Tech Career Recommender 🤖🤖")
+st.title("![image](https://assets.grok.com/users/8037eed3-1249-415e-9d09-585297fa1e8f/generated/34b07bb2-10e4-496d-99d3-b24db9ea96d3/image.jpg)
+ AI-Powered Tech Career Recommender 🤖🤖")
 st.write("Answer a few questions and get matched to your ideal tech career!")
 
 name = st.text_input("Your Name")
