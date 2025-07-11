@@ -6,7 +6,8 @@ import datetime
 st.set_page_config(page_title="AI Career Recommender", layout="centered")
 
 # Page title
-st.title("AI-Powered Tech Career Recommender")
+
+st.title("🤖🤖 AI-Powered Tech Career Recommender 🤖🤖")
 st.write("Answer a few questions and get matched to your ideal tech career!")
 
 name = st.text_input("Your Name")
