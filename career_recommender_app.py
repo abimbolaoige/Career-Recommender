@@ -83,9 +83,21 @@ explanations = {
     "DevOps Engineer": "You love automation, infrastructure, and keeping systems running smoothly."
 }
 
+# Load existing logs if they exist
+log_file = "user_logs.csv"
+existing_names = []
+
+if os.path.exists(log_file):
+    existing_logs = pd.read_csv(log_file)
+    existing_names = existing_logs["Name"].str.lower().tolist()
+
 # Show result
 if st.button("🔍 Recommend Career"):
-    if name:
+    if not name:
+        st.warning("Please enter your name to proceed.")
+    elif name.lower() in existing_names:
+        st.error("⚠️ You’ve already submitted this form. Only one entry is allowed per person.")
+    else:
         best_match = max(careers, key=careers.get)
         st.success(f"Hi **{name}**, based on your profile, you’d make a great **{best_match}**!")
         st.info(f"💡 Why? {explanations[best_match]}")
@@ -103,26 +115,18 @@ if st.button("🔍 Recommend Career"):
         }
 
         log_df = pd.DataFrame([user_data])
-        log_file = "user_logs.csv"
-
         if os.path.exists(log_file):
             log_df.to_csv(log_file, mode='a', index=False, header=False)
         else:
             log_df.to_csv(log_file, index=False)
 
         st.success("✅ Your response has been saved.")
-    else:
-        st.warning("Please enter your name to proceed.")
-
-# Footer
-st.markdown("---")
-st.caption("Built for 3MTT Knowledge Showcase | Powered by Data + AI 🔬")
 
 # --- Admin Section (Hidden behind admin key) ---
 st.markdown("---")
 admin_key = st.text_input("🔐 Admin Access Key", type="password")
 
-if admin_key == "counselmedata1": 
+if admin_key == "Counselmedata1":  # ← Change this to your preferred key
     st.success("✅ Admin access granted.")
     
     if os.path.exists("user_logs.csv"):
@@ -142,5 +146,6 @@ if admin_key == "counselmedata1":
 elif admin_key != "":
     st.error("❌ Invalid admin key.")
 
-        st.info("No user data logged yet. Come back after more users submit responses.")
-
+# Footer
+st.markdown("---")
+st.caption("Built for 3MTT Knowledge Showcase | Powered by Data + AI 🔬")
