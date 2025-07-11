@@ -29,12 +29,12 @@ careers = {
     "AI Engineer": 0,
     "Cybersecurity Specialist": 0,
     "DevOps Engineer": 0
-}
+    "UI/UX": 0}
 
 # Add scores based on interest
 interest_map = {
     "Data": ["Data Analyst"],
-    "Design": ["Product Designer"],
+    "Design": ["Product Designer", "UI/UX Designer"],
     "Communication": ["Technical Writer"],
     "Leadership": ["Project Manager"],
     "AI": ["AI Engineer"],
@@ -54,8 +54,10 @@ for s in strengths:
     elif s == "Creativity":
         careers["Product Designer"] += 2
         careers["Technical Writer"] += 1
+        careers["UI/UX Designer"] += 2  # Added for creativity
     elif s == "Empathy":
         careers["Technical Writer"] += 2
+        careers["UI/UX Designer"] += 1  # Empathy also important in UI/UX
     elif s == "Leadership":
         careers["Project Manager"] += 2
         careers["DevOps Engineer"] += 1
@@ -64,26 +66,29 @@ for s in strengths:
         careers["AI Engineer"] += 2
         careers["Cybersecurity Specialist"] += 1
 
-# Add scores based on tech level
+# Scores based on tech level
 if tech_level == "Intermediate":
     careers["AI Engineer"] += 1
     careers["DevOps Engineer"] += 1
     careers["Cybersecurity Specialist"] += 1
+    careers["UI/UX Designer"] += 1  # Added for Intermediate level
 elif tech_level == "Advanced":
     careers["AI Engineer"] += 2
     careers["DevOps Engineer"] += 2
     careers["Cybersecurity Specialist"] += 2
+    careers["UI/UX Designer"] += 2  # Added for Advanced level
+
 
 # Career descriptions
 explanations = {
     "Data Analyst": "You love working with data to find insights that drive decisions.",
     "Product Designer": "You thrive on creativity, design thinking, and crafting great user experiences.",
+    "UI/UX Designer": "You’re a creative thinker who enjoys designing intuitive, user-friendly digital interfaces.",
     "Technical Writer": "You're great at making complex topics easy to understand.",
     "Project Manager": "You have leadership skills and enjoy organizing teams to hit goals.",
     "AI Engineer": "You're analytical and excited about machine learning and automation.",
     "Cybersecurity Specialist": "You enjoy securing systems and thinking like a hacker to prevent breaches.",
-    "DevOps Engineer": "You love automation, infrastructure, and keeping systems running smoothly."
-}
+    "DevOps Engineer": "You love automation, infrastructure, and keeping systems running smoothly."}
 
 log_file = "user_logs.csv"
 existing_names = []
