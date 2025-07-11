@@ -28,7 +28,7 @@ careers = {
     "Project Manager": 0,
     "AI Engineer": 0,
     "Cybersecurity Specialist": 0,
-    "DevOps Engineer": 0
+    "DevOps Engineer": 0,
     "UI/UX": 0}
 
 # Add scores based on interest
