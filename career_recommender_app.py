@@ -9,8 +9,9 @@ st.set_page_config(page_title="AI Career Recommender", layout="centered")
 st.title("🎯 AI-Powered Tech Career Recommender")
 st.write("Answer a few questions and get matched to your ideal tech career!")
 
-# User inputs
 name = st.text_input("Your Name")
+age = st.number_input("Your Age", min_value=10, max_value=100, step=1)
+gender = st.selectbox("Gender", ["Prefer not to say", "Female", "Male", "Non-binary", "Other"])
 
 education = st.selectbox("Education Level", ["SSCE", "OND", "HND", "BSc", "MSc"])
 interest = st.selectbox("Which area interests you most?", ["Data", "Design", "Communication", "Leadership", "AI", "Cybersecurity", "DevOps"])
@@ -104,19 +105,25 @@ if st.button("🔍 Recommend Career"):
         st.success(f"Hi **{name}**, based on your profile, you’d make a great **{best_match}**!")
         st.info(f"💡 Why? {explanations[best_match]}")
 
-        # Save user response
-        user_data = {
-            "Name": name,
-            "Education Level": education,
-            "Interest Area": interest,
-            "Strengths": ", ".join(strengths),
-            "Learning Style": learning_style,
-            "Tech Level": tech_level,
-            "Recommended Career": best_match,
-            "Timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        }
+       # Logging the result
+if name and result:
+    log_data = {
+        "Name": name,
+        "Age": age,
+        "Gender": gender,
+        "Education": education,
+        "Interest": interest,
+        "Strengths": ", ".join(strengths),
+        "Learning_Style": learning_style,
+        "Tech_Level": tech_level,
+        "Recommended_Career": result,
+        "Timestamp": pd.Timestamp.now()
+    }
 
-        log_df = pd.DataFrame([user_data])
+    log_df = pd.DataFrame([log_data])
+
+    log_df.to_csv(log_file, mode='a', header=not os.path.exists(log_file), index=False)
+
         if os.path.exists(log_file):
             log_df.to_csv(log_file, mode='a', index=False, header=False)
         else:
