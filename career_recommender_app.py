@@ -125,8 +125,8 @@ if os.path.exists(log_file):
         st.warning("The log file is corrupted or unreadable. Please fix or delete `user_logs.csv`.")
 
 # --- Career Recommendation ---
+name = name.strip (required_fields = [age_range, gender, education, interest, career_goal, tech_level])
 if st.button("Click for Career Recommendation"): 
-    required_fields = [age_range, gender, education, interest, career_goal, tech_level]
     
     if not name:
         st.warning("Please enter your name to continue.")
@@ -140,7 +140,7 @@ if st.button("Click for Career Recommendation"):
         top_matches = recommend_career()
         st.success(f"Hi {name}, here are your top tech career matches:")
 
-       for i, (career, score) in enumerate(top_2):
+       for i, (career, score) in enumerate(top_matches):
             st.markdown(f"### {i+1}. {career}")
             st.markdown(f"- *Score*: {score}")
             st.markdown(f"- *Why?* {explanations.get(career, 'No explanation available.')}")
