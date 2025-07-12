@@ -18,7 +18,12 @@ strengths = st.multiselect("Choose your strengths (you can pick more than one):"
     ["Problem-solving", "Creativity", "Empathy", "Leadership", "Analytical Thinking"],
     help="Hold Ctrl (or Command on Mac) to select multiple options.")
 learning_style = st.radio("Preferred Learning Style", ["Visual", "Hands-on", "Self-paced"])
+career_goal = st.selectbox("What is your primary motivation for pursuing a tech career?",
+    ["Competitive salary and growth potential", "Flexibility and remote work opportunities", 
+     "Opportunities to be creative and innovative", "Desire to solve real-world problems", 
+     "Interest in managing or leading teams"])
 tech_level = st.selectbox("Tech Exposure Level", ["Beginner", "Intermediate", "Advanced"])
+
 
 # --- Career Scoring ---
 careers = {"Data Analyst": 0,
@@ -107,7 +112,7 @@ if os.path.exists(log_file):
         st.warning("The log file is corrupted or unreadable. Please fix or delete `user_logs.csv`.")
 
 # --- Career Recommendation ---
-if st.button("Recommend My Tech Career"):
+if st.button("Click for Career Recommendation"):
     if not name:
         st.warning("Please enter your name to continue.")
     elif name.lower() in existing_names:
@@ -143,8 +148,9 @@ if st.button("Recommend My Tech Career"):
 
 # --- Stop Here Divider ---
 st.markdown("---")
-st.markdown("### ✅ Now that you have your Recommendation, you've reached the end of the career recommendation section.")
-st.markdown("Thank you for taking the test. Please share")
+st.markdown("Please Note: This suggestion is based on the input received from you")
+st.markdown("### ✅ Now that you have your Recommendation, you've reached the end of the Career Recommender.")
+
 
 # --- Admin Section ---
 st.markdown("---")
