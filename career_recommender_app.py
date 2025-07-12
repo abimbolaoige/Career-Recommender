@@ -144,7 +144,7 @@ if st.button("Recommend My Tech Career"):
 # --- Stop Here Divider ---
 st.markdown("---")
 st.markdown("### ✅ You've reached the end of the career recommendation section.")
-st.markdown("If you're an admin, you may proceed below. Otherwise, you can close the app now.")
+st.markdown("Thank you for taking the test. Please share")
 
 # --- Admin Section ---
 st.markdown("---")
