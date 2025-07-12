@@ -5,7 +5,7 @@ import os
 st.set_page_config(page_title="AI Career Recommender", layout="centered")
 
 # --- Title ---
-st.title("🤖 💼 AI-Powered Tech Career Recommender 🤖 💼")
+st.title("🤖 💼 AI-Powered TeCareer Recommender 🤖 💼")
 st.write("Answer a few questions and get matched to your ideal tech career!")
 
 # --- User Inputs ---
@@ -131,8 +131,7 @@ if st.button("Recommend My Tech Career"):
             "Learning_Style": learning_style,
             "Tech_Level": tech_level,
             "Recommended_Career": top_matches[0][0],
-            "Timestamp": pd.Timestamp.now()
-        }
+            "Timestamp": pd.Timestamp.now()}
 
         log_df = pd.DataFrame([log_data])
         if os.path.exists(log_file):
