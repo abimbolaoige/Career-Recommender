@@ -141,6 +141,11 @@ if st.button("Recommend My Tech Career"):
         else:
             log_df.to_csv(log_file, mode='w', header=True, index=False)
 
+# --- Stop Here Divider ---
+st.markdown("---")
+st.markdown("### ✅ You've reached the end of the career recommendation section.")
+st.markdown("If you're an admin, you may proceed below. Otherwise, you can close the app now.")
+
 # --- Admin Section ---
 st.markdown("---")
 admin_key = st.text_input("Admin Access Key", type="password")
