@@ -130,6 +130,8 @@ if st.button("Click for Career Recommendation"):
     name = name.strip()
     if not name:
         st.warning("Please enter your name to continue.")
+    elif not name.replace(" ", "").isalpha():
+    st.warning("Name should contain only letters (no numbers or special characters).")
     elif name.lower() in existing_names:
         st.error("You've already submitted your details. Only one entry per person is allowed.")
     elif "Choose an option" in required_fields:
