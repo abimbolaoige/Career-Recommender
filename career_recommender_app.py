@@ -129,11 +129,11 @@ required_fields = [age_range, gender, education, interest, career_goal, tech_lev
 if st.button("Click for Career Recommendation"): 
     name = name.strip()
 if not name:
-        st.warning("Name should contain only letters (no numbers or special characters).")
+        st.warning("Please enter your name to continue.")
     elif name.lower() in existing_names:
         st.error("You've already submitted your details. Only one entry per person is allowed.")
-    elif "Choose an option" in required_fields:
-        st.warning("Please select valid options for all fields.")
+    elif any(field == "Choose an option" for field in required_fields):
+        st.warning("Please select valid options for all dropdown fields.")
     elif not strengths:
         st.warning("Please select at least one strength.")
     else:
