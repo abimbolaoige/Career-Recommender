@@ -6,10 +6,10 @@ st.set_page_config(page_title="AI Career Recommender", layout="centered")
 
 # --- Title ---
 st.title("🤖 AI-Powered Tech Career Recommender 💼")
-st.write("Answer a few questions and get matched to your ideal tech career!")
+st.write("#### Answer a few questions and get matched to your ideal tech career!")
 
 st.markdown("### ⚠️ Important!")
-st.markdown("Please **do not leave any field blank**. All questions are required to give you the most accurate career match.")
+st.markdown("Please *do not leave any field blank*. All questions are required to give you the most accurate career match.")
 st.markdown("---")
 
 # --- User Inputs ---
@@ -21,7 +21,7 @@ interest = st.selectbox("Which area interests you most?", ["AI", "Communication"
 strengths = st.multiselect("Choose your strengths (you can pick more than one):",
     ["Problem-solving", "Creativity", "Empathy", "Leadership", "Analytical Thinking"],
     help="Hold Ctrl (or Command on Mac) to select multiple options.")
-learning_style = st.radio("Preferred Learning Style", ["Visual", "Hands-on", "Self-paced"])
+learning_style = st.radio("Preferred Learning Style", ["Visual", "Hands-on/Practical Learning", "Self-paced"])
 career_goal = st.selectbox("What is your primary motivation for pursuing a tech career?",
     ["Competitive salary and growth potential", "Flexibility and remote work opportunities", 
      "Opportunities to be creative and innovative", "Desire to solve real-world problems", 
