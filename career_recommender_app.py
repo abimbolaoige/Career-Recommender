@@ -125,9 +125,9 @@ if os.path.exists(log_file):
         st.warning("The log file is corrupted or unreadable. Please fix or delete `user_logs.csv`.")
 
 # --- Career Recommendation ---
-name = name.strip (required_fields = [age_range, gender, education, interest, career_goal, tech_level])
+ Required_fields = [age_range, gender, education, interest, career_goal, tech_level]
 if st.button("Click for Career Recommendation"): 
-    
+    name = name.strip()
     if not name:
         st.warning("Please enter your name to continue.")
     elif name.lower() in existing_names:
