@@ -8,6 +8,10 @@ st.set_page_config(page_title="AI Career Recommender", layout="centered")
 st.title("🤖 AI-Powered Tech Career Recommender 💼")
 st.write("Answer a few questions and get matched to your ideal tech career!")
 
+st.markdown("### ⚠️ Important!")
+st.markdown("Please **do not leave any field blank**. All questions are required to give you the most accurate career match.")
+st.markdown("---")
+
 # --- User Inputs ---
 name = st.text_input("Your Name")
 age_range = st.selectbox("Select Your Age Range", ["Under 18", "18–24", "25–34", "35–44", "45–54", "55–64", "65+"])
