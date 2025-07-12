@@ -5,7 +5,7 @@ import os
 st.set_page_config(page_title="AI Career Recommender", layout="centered")
 
 # --- Title ---
-st.title("🤖 💼 AI-Powered TeCareer Recommender 🤖 💼")
+st.title("🤖 💼 AI-Powered Tech Career Recommender 🤖 💼")
 st.write("Answer a few questions and get matched to your ideal tech career!")
 
 # --- User Inputs ---
