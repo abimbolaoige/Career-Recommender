@@ -14,19 +14,30 @@ st.markdown("---")
 
 # --- User Inputs ---
 name = st.text_input("Your Name")
-age_range = st.selectbox("Select Your Age Range", ["Under 18", "18–24", "25–34", "35–44", "45–54", "55–64", "65+"])
-gender = st.selectbox("Gender", ["Male", "Female", "Prefer not to say"])
-education = st.selectbox("Education Level", ["High School", "SSCE", "OND", "HND", "BSc", "MSc"])
-interest = st.selectbox("Which area interests you most?", ["AI", "Communication", "Cybersecurity", "Data", "Design", "DevOps", "Leadership"])
+
+age_range = st.selectbox("Select Your Age Range", ["Choose an option", "Under 18", "18–24", "25–34", "35–44", "45–54", "55–64", "65+"])
+
+gender = st.selectbox("Gender", ["Choose an option", "Male", "Female", "Prefer not to say"])
+
+education = st.selectbox("Education Level", ["Choose an option", "High School", "SSCE", "OND", "HND", "BSc", "MSc"])
+
+interest = st.selectbox("Which area interests you most?", ["Choose an option", "AI", "Communication", "Cybersecurity", "Data", "Design", "DevOps", "Leadership"])
+
 strengths = st.multiselect("Choose your strengths (you can pick more than one):",
     ["Problem-solving", "Creativity", "Empathy", "Leadership", "Analytical Thinking"],
     help="Hold Ctrl (or Command on Mac) to select multiple options.")
+
 learning_style = st.radio("Preferred Learning Style", ["Visual", "Hands-on/Practical Learning", "Self-paced"])
-career_goal = st.selectbox("What is your primary motivation for pursuing a tech career?",
-    ["Competitive salary and growth potential", "Flexibility and remote work opportunities", 
-     "Opportunities to be creative and innovative", "Desire to solve real-world problems", 
-     "Interest in managing or leading teams"])
-tech_level = st.selectbox("Tech Exposure Level", ["Beginner", "Intermediate", "Advanced"])
+
+career_goal = st.selectbox("What is your primary motivation for pursuing a tech career?", ["Choose an option",
+    "Competitive salary and growth potential",
+    "Flexibility and remote work opportunities",
+    "Opportunities to be creative and innovative",
+    "Desire to solve real-world problems",
+    "Interest in managing or leading teams"])
+
+tech_level = st.selectbox("Tech Exposure Level", ["Choose an option", "Beginner", "Intermediate", "Advanced"])
+
 
 
 # --- Career Scoring ---
