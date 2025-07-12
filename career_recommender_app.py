@@ -140,7 +140,7 @@ if st.button("Click for Career Recommendation"):
         top_matches = recommend_career()
         st.success(f"Hi {name}, here are your top tech career matches:")
 
-       for i, (career, score) in enumerate(top_matches):
+        for i, (career, score) in enumerate(top_matches):
             st.markdown(f"### {i+1}. {career}")
             st.markdown(f"- *Score*: {score}")
             st.markdown(f"- *Why?* {explanations.get(career, 'No explanation available.')}")
