@@ -125,15 +125,15 @@ if os.path.exists(log_file):
         st.warning("The log file is corrupted or unreadable. Please fix or delete `user_logs.csv`.")
 
 # --- Career Recommendation ---
-required_fields = [age_range, gender, education, interest, career_goal, tech_level]
-if st.button("Click for Career Recommendation"): 
+if st.button("Click for Career Recommendation"):
     name = name.strip()
-    
-if not name:
+    required_fields = [age_range, gender, education, interest, career_goal, tech_level]
+
+    if not name:
         st.warning("Please enter your name to continue.")
     elif name.lower() in existing_names:
         st.error("You've already submitted your details. Only one entry per person is allowed.")
-    elif "Choose an option" in required_fields:
+    elif any(field == "Choose an option" for field in required_fields):
         st.warning("Please select valid options for all fields.")
     elif not strengths:
         st.warning("Please select at least one strength.")
