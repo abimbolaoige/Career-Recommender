@@ -38,8 +38,6 @@ career_goal = st.selectbox("What is your primary motivation for pursuing a tech 
 
 tech_level = st.selectbox("Tech Exposure Level", ["Choose an option", "Beginner", "Intermediate", "Advanced"])
 
-
-
 # --- Career Scoring ---
 careers = {"Data Analyst": 0,
     "Decision Intelligence Specialist": 0,
@@ -128,15 +126,20 @@ if os.path.exists(log_file):
 
 # --- Career Recommendation ---
 if st.button("Click for Career Recommendation"):
+required_fields = [age_range, gender, education, interest, career_goal, tech_level]
     if not name:
         st.warning("Please enter your name to continue.")
     elif name.lower() in existing_names:
         st.error("You've already submitted your details. Only one entry per person is allowed.")
+    elif "Choose an option" in required_fields:
+        st.warning("Please select valid options for all fields.")
+    elif not strengths:
+        st.warning("Please select at least one strength.")
     else:
         top_matches = recommend_career()
         st.success(f"Hi {name}, here are your top tech career matches:")
 
-        for i, (career, score) in enumerate(top_matches):
+       for i, (career, score) in enumerate(top_matches):
             st.markdown(f"### {i+1}. {career}")
             st.markdown(f"- **Score**: {score}")
             st.markdown(f"- **Why?** {explanations.get(career, 'No explanation available.')}")
