@@ -14,7 +14,9 @@ age_range = st.selectbox("Select Your Age Range", ["Under 18", "18–24", "25–
 gender = st.selectbox("Gender", ["Male", "Female", "Prefer not to say"])
 education = st.selectbox("Education Level", ["SSCE", "OND", "HND", "BSc", "MSc"])
 interest = st.selectbox("Which area interests you most?", ["AI", "Communication", "Cybersecurity", "Data", "Design", "DevOps", "Leadership"])
-strengths = st.multiselect("What are your top strengths?", ["Problem-solving", "Creativity", "Empathy", "Leadership", "Analytical Thinking"])
+strengths = st.multiselect("Choose your strengths (you can pick more than one):",
+    ["Problem-solving", "Creativity", "Empathy", "Leadership", "Analytical Thinking"],
+    help="Hold Ctrl (or Command on Mac) to select multiple options.")
 learning_style = st.radio("Preferred Learning Style", ["Visual", "Hands-on", "Self-paced"])
 tech_level = st.selectbox("Tech Exposure Level", ["Beginner", "Intermediate", "Advanced"])
 
