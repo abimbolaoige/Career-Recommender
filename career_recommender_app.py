@@ -111,7 +111,8 @@ explanations = {"Data Analyst": "You enjoy analyzing and interpreting complex da
 
 # --- Recommender Function ---
 def recommend_career():
-    top_3 = sorted(careers.items(), key=lambda x: x[1], reverse=True)[:3]
+    top_2 = sorted(careers.items(), key=lambda x: x[1], reverse=True)[:2]
+    return top_careers
 
 # --- Logging Prevention ---
 log_file = "user_logs.csv"
