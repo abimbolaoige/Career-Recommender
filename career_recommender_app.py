@@ -163,10 +163,10 @@ if admin_key == st.secrets["admin"]["key"]:
     st.success("Admin access granted.")
     if os.path.exists(log_file):
         df_logs = pd.read_csv(log_file)
-        st.subheader("Recent Submissions")
-        st.dataframe(df_logs.tail(10), use_container_width=True)
+        st.subheader("All Submissions")
+        st.dataframe(df_logs, use_container_width=True)
         csv = df_logs.to_csv(index=False).encode('utf-8')
-        st.download_button("Download CSV Log", csv, "user_logs.csv", "text/csv")
+        st.download_button("Download Full CSV Log", csv, "user_logs.csv", "text/csv")
     else:
         st.info("No user data logged yet.")
 elif admin_key != "":
