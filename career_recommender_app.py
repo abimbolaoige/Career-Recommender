@@ -12,7 +12,7 @@ st.write("Answer a few questions and get matched to your ideal tech career!")
 name = st.text_input("Your Name")
 age_range = st.selectbox("Select Your Age Range", ["Under 18", "18–24", "25–34", "35–44", "45–54", "55–64", "65+"])
 gender = st.selectbox("Gender", ["Male", "Female", "Prefer not to say"])
-education = st.selectbox("Education Level", ["SSCE", "OND", "HND", "BSc", "MSc"])
+education = st.selectbox("Education Level", ["High School", "SSCE", "OND", "HND", "BSc", "MSc"])
 interest = st.selectbox("Which area interests you most?", ["AI", "Communication", "Cybersecurity", "Data", "Design", "DevOps", "Leadership"])
 strengths = st.multiselect("Choose your strengths (you can pick more than one):",
     ["Problem-solving", "Creativity", "Empathy", "Leadership", "Analytical Thinking"],
