@@ -112,7 +112,6 @@ explanations = {"Data Analyst": "You enjoy analyzing and interpreting complex da
 # --- Recommender Function ---
 def recommend_career():
     top_3 = sorted(careers.items(), key=lambda x: x[1], reverse=True)[:3]
-    return top_3
 
 # --- Logging Prevention ---
 log_file = "user_logs.csv"
@@ -141,8 +140,8 @@ if st.button("Click for Career Recommendation"):
 
        for i, (career, score) in enumerate(top_matches):
             st.markdown(f"### {i+1}. {career}")
-            st.markdown(f"- **Score**: {score}")
-            st.markdown(f"- **Why?** {explanations.get(career, 'No explanation available.')}")
+            st.markdown(f"- *Score*: {score}")
+            st.markdown(f"- *Why?* {explanations.get(career, 'No explanation available.')}")
             st.markdown("---")
 
         # Save top match only for logging
