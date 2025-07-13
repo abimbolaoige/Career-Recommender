@@ -17,7 +17,7 @@ name = st.text_input("Your Name")
 
 age_range = st.selectbox("Select Your Age Range", ["Choose an option", "Under 18", "18–24", "25–34", "35–44", "45–54", "55–64", "65+"])
 
-gender = st.selectbox("Gender", ["Choose an option", "Male", "Female", "Prefer not to say"])
+gender = st.selectbox("Gender", ["Choose an option", "Male", "Female"])
 
 education = st.selectbox("Education Level", ["Choose an option", "High School", "SSCE", "OND", "HND", "BSc", "MSc"])
 
