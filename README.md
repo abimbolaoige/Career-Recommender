@@ -1,6 +1,6 @@
 # Career-Recommender
 
-## AI-Powered Tech Career Recommender App
+## AI-Powered Tech Career Recommender App by Abimbola Odunola Ige - FE/24/8023274694 (3MTT Cohort 3 Fellow)
 
 ### Introduction
 The AI Career Recommender App is a personalized recommendation tool designed to help individuals especially beginners or career switcher—identify their most suitable career paths in the technology ecosystem. Built for the 3MTT Knowledge Showcase, the app leverages user inputs such as interests, strengths, education, and learning preferences to suggest relevant tech careers.
