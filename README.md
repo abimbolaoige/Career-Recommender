@@ -7,7 +7,7 @@ The AI Career Recommender App is a personalized recommendation tool designed to 
 
 The app is developed by Abimbola Odunola Ige using Streamlit, a Python-based open-source app framework, and is hosted here on GitHub for easy access, maintenance, and collaboration. 
 
-[Click here to view the App](App Link: https://career-recommender-tefeyugyzyezhgzuvipbc6.streamlit.app)
+[Click here to view the App](https://career-recommender-tefeyugyzyezhgzuvipbc6.streamlit.app)
 
 The app uses rule-based logic to assign scores and recommend careers. These recommendations are logged and later visualized in Power BI
 
@@ -63,7 +63,8 @@ Career Roles Covered - The section uses; Flexibility, Innovation, Problem-solvin
 * Career Discovery - Helps users explore roles they may not have considered.
 * Clarity - Simplifies decision-making for learners unsure where to begin. 
 * Confidence Boost - Offers a personalized recommendation backed by a logic-based system.               
-* Accessibility - Fast, user-friendly, and does not require technical knowledge to use. Planning - Users can use the result to plan specific courses, certifications, or mentorships. 
+* Accessibility - Fast, user-friendly, and does not require technical knowledge to use.
+* Planning - Users can use the result to plan specific courses, certifications, or mentorships. 
 * It is useful for Stakeholders & Educators
 
 #### Stakeholder - Benefits
@@ -94,9 +95,9 @@ if st.button("Click for Career Recommendation"):
         st.success(f"Hi {name}, here are your top tech career matches:")
 ```
 
-Committing to changes, a maintenance/edit made easy on GitHub hosting with Streamlit. 
-App still under development and open to work with product designers, product managers and techies for upgrade.
+Committing to app code modification/update changes is a maintenance and edit made easy on GitHub hosting with Streamlit. 
 
+##### App still under development and open to work with product designers, product managers and techies for upgrade.
 
 ### How the App works: Example Scenario
 ```
@@ -221,7 +222,6 @@ elif tech_level == "Advanced":
 ```
 Because these jobs become more fitting if you have deep tech knowledge.
 
-
 How the Final Recommendation Works: At the end of all the questions, the code “Find the first two careers that has the highest scores, and recommend that one.”:
 ```
 best_match = max(careers, key=careers.get)
@@ -235,18 +235,19 @@ Please find the user.log.csv file attached below.
 [Open the CSV Dataset](https://drive.google.com/file/d/1yUmtciaGwFzkk2uQSeMFg87Y9DBlGgwh/view?usp=drive_link)
 [Power BI Analysis](https://drive.google.com/file/d/1oQb2Vg738JAliv7ge6vVIdZDaFKtWn9W/view?usp=drive_link)
 [PDF Link](https://drive.google.com/file/d/1rjTNYnEwWoii6BkfxCf1uNSxBjeeltpw/view?usp=drive_link)
+
 ### The dashboard aims to:
 * Help users understand how their attributes align with career roles
 * Provide stakeholders with visibility into career trends and user demographics
 * Demonstrate how data can drive career decisions in tech
 * Data Cleaning Process and Dax Functions Used
 
-Key Visual Insights
+#### Key Visual Insights
 
 1. Top Interest Area - Data and Design tied as the most common areas of interest (22 counts each) Users are gravitating toward data-centric and creative roles.
 2. Most Recommended Career - Data Analyst emerged as the top recommended career - This reinforces the strong match between user attributes and analytical roles.
 3. Submissions by Age Group - Dominant age brackets: Under 18, 18-24, and 25–34 - This shows interest mostly among early- to mid-career individuals.
-4. Learning Style Preference - Majority (48%) prefer Visual Learning Indicates a strong need for visually rich content or platforms (videos, infographics, UI tools).
+4. Learning Style Preference - Majority (48%) prefer Visual Learning, this indicates a strong need for visually rich content or platforms (videos, infographics, UI tools).
 5. Tech Exposure Level - Most users identified as Beginners, emphasizing that the app is valuable for entry-level tech aspirants.
 6. Strengths-to-Career Breakdown - "Problem-solving" aligns with Data Analyst, Cybersecurity Specialist, and DevOps Engineer "Empathy" strongly maps to Virtual Assistant and UI/UX Designer
    
@@ -256,34 +257,37 @@ Key Visual Insights
 * Select the Tech Recommendation Data.csv file and “Load”
 
 #### Open Power Query Editor
-
 From Home, open Transform Data , This automatically opens the Power Query Editor
-Clean & Prepare the Data
 
+Clean & Prepare the Data
 1. Removal of Blank Rows - I look through the table preview and filter out any blank rows using the drop-down filters on each column.
+   
 2. Split Strengths Column into Multiple Values
 I selected the Strengths column
 Clicked “Split Column”, “By Delimiter”
 Choose Comma ( , ) and Split into Columns
+
 3. Trim Whitespace
 Selected Name Column since it is the only manual entry space
 Clicked “Transform”, “Format” and “Trim” to remove leading/trailing spaces in Names
 
-5. Confirmed the Data Types
+4. Confirmed the Data Types
 I ensure proper data types:
 Name: Text
 Age, Gender, Tech Level, Education, Interest, Recommended Career: Text
 Timestamp: Date/Time
 
-6. Handle Missing Values
+5. Handle Missing Values
 Strengths - Users picked as applicable, hence some were blank. I replaced "null" value with "None" and also splitted the columns to 5; Strength.1, Strength.2, Strength.3, Strength.4, Strength.5
 
-7. Rename Columns:
-I renamed Learning_Style → Learning Style, etc. for better readability
+6. Rename Columns:
+I renamed Learning_Style - Learning Style, Timestamp - Time Stamp etc. for better readability
 I clicked “Close & Apply” to return to the main Power BI workspace
 
-Conclusion
+#### Conclusion
 
 This AI-powered tool serves as a smart, simple decision assistant for aspiring tech professionals. Whether used independently or embedded in digital literacy campaigns like 3MTT, it empowers users to start their tech journey with purpose and direction. Built with Streamlit & Python, hosted on GitHub by
 
-Abimbola O. Ige
+#### Abimbola Odunola Ige
+[Let's Connect on LinkedIn](https://www.linkedin.com/in/abimbola-ige-6a7377287)
+
