@@ -4,7 +4,7 @@
 ## Data Analysis and Visualization 
 
 ### Introduction
-The AI Career Recommender App is a personalized recommendation tool designed to help individuals especially beginners or career switcher—identify their most suitable career paths in the technology ecosystem. Built for the 3MTT Knowledge Showcase, the app leverages user inputs such as interests, strengths, education, and learning preferences to suggest relevant tech careers.
+The AI Career Recommender App is a personalized recommendation tool designed to help individuals especially beginners or career switcher-identify their most suitable career paths in the technology ecosystem. Built for the 3MTT Knowledge Showcase, the app leverages user inputs such as interests, strengths, education, and learning preferences to suggest relevant tech careers.
 
 The app is developed by Abimbola Odunola Ige using Streamlit, a Python-based open-source app framework, and is hosted here on GitHub for easy access, maintenance, and collaboration. 
 
