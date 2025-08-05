@@ -31,7 +31,7 @@ Users fill a simple form with:
 * Gender
 * Education Level
 
-2. Career Input Factors : Career Interest & Strengths 
+2. Career Input Factors: Career Interest & Strengths 
 * Area of Interest (e.g., AI, Cybersecurity, Design, etc.)
 * Key Strengths (e.g., problem-solving, empathy, leadership)
 * Preferred Learning Style - Visual, Hands-on/Practical Learning, Self-paced
